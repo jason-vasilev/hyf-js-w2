@@ -1,0 +1,278 @@
+/* ---- theme: tweak here ---- */
+:root {
+  --bg: #ffffff;
+  --fg: #111827;
+  --muted: #4b5563;
+  --accent: #0369a1;
+  --accent2: #b45309;
+  --code-bg: #f1f5f9;
+  --line: #cbd5e1;
+  --exercise-bg: #fffbeb;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  overflow: hidden;
+}
+
+/* ---- slides ---- */
+section {
+  display: none;
+  position: fixed;
+  inset: 0;
+  padding: 4vh 6vw 8vh;
+  flex-direction: column;
+  justify-content: center;
+  font-size: var(--fs, 4.6vmin); /* set by slides.js so content fits */
+  line-height: 1.4;
+}
+section.active {
+  display: flex;
+}
+section.title {
+  text-align: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.4em;
+  margin: 0 0 0.3em;
+  color: var(--accent);
+  line-height: 1.1;
+}
+h2 {
+  font-size: 1.6em;
+  margin: 0 0 0.6em;
+  color: var(--accent);
+  line-height: 1.15;
+}
+h3 {
+  font-size: 1.1em;
+  margin: 0 0 0.3em;
+  color: var(--accent2);
+}
+p,
+ul,
+ol {
+  margin: 0 0 0.6em;
+}
+ul,
+ol {
+  padding-left: 1.2em;
+}
+li {
+  margin-bottom: 0.25em;
+}
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(3, 105, 161, 0.35);
+}
+.muted,
+.small {
+  color: var(--muted);
+}
+.small {
+  font-size: 0.7em;
+}
+blockquote {
+  border-left: 0.2em solid var(--accent2);
+  margin: 0 0 0.6em;
+  padding-left: 0.8em;
+  font-style: italic;
+}
+
+code,
+kbd {
+  font-family: var(--mono);
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 0.25em;
+  font-size: 0.9em;
+}
+kbd {
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+}
+pre {
+  background: var(--code-bg);
+  padding: 0.8em 1em;
+  border-radius: 0.5em;
+  margin: 0 0 0.6em;
+  font-size: 0.85em;
+  line-height: 1.35;
+}
+pre code {
+  background: none;
+  padding: 0;
+  font-size: 1em;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3vw;
+  align-items: start;
+}
+.two-col {
+  columns: 2;
+  column-gap: 3vw;
+}
+.two-col li {
+  break-inside: avoid;
+}
+@media (orientation: portrait) {
+  .cols {
+    grid-template-columns: 1fr;
+  }
+  .two-col {
+    columns: 1;
+  }
+}
+
+/* exercise slides */
+section.exercise {
+  background: var(--exercise-bg);
+}
+section.exercise h2::before {
+  content: "🛠 ";
+}
+section.exercise[data-time]::after {
+  content: "⏱ " attr(data-time);
+  position: fixed;
+  top: 3vh;
+  right: 3vw;
+  font-size: 0.8em;
+  background: var(--accent2);
+  color: #fff;
+  padding: 0.2em 0.7em;
+  border-radius: 2em;
+  font-weight: 600;
+}
+
+/* box model diagram */
+.boxmodel {
+  display: flex;
+  justify-content: center;
+}
+.bm {
+  padding: 1.4em;
+  text-align: center;
+  font-size: 0.75em;
+}
+.bm.margin {
+  background: #f4b183;
+  color: #222;
+}
+.bm.border {
+  background: #f9d99a;
+  color: #222;
+}
+.bm.padding {
+  background: #c3d69b;
+  color: #222;
+}
+.bm.content {
+  background: #8db3e2;
+  color: #222;
+  padding: 1em 2em;
+}
+
+.contrast {
+  display: flex;
+  gap: 1em;
+  margin-top: 0.5em;
+}
+.contrast span {
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  font-weight: 600;
+}
+
+/* progress */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+.counter {
+  position: fixed;
+  bottom: 1.2vh;
+  right: 1.5vw;
+  font-size: 2.2vmin;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.bar {
+  height: 2vh;
+  background: #e2e8f0;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.25s;
+}
+
+/* overview mode (press O) */
+body.overview section {
+  display: flex;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  aspect-ratio: 16/9;
+  font-size: 1vmin;
+  padding: 1vh 1vw;
+  border: 2px solid var(--line);
+  border-radius: 0.5vw;
+  cursor: pointer;
+  overflow: hidden;
+}
+body.overview section.active {
+  border-color: var(--accent);
+}
+body.overview section::after {
+  display: none;
+}
+body.overview {
+  overflow: auto;
+}
+body.overview .deck {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vw;
+  padding: 1vw;
+}
+body.overview .progress {
+  display: none;
+}
+
+/* tables (loop anatomy, trace tables) */
+table {
+  border-collapse: collapse;
+  margin: 0 0 0.6em;
+  font-size: 0.85em;
+}
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 0.3em 0.8em;
+  text-align: left;
+}
+th {
+  background: var(--code-bg);
+  color: var(--accent);
+}
