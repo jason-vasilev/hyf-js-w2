@@ -513,16 +513,16 @@ greet("Sana", "🎉");   // Hello Sana 🎉</code></pre>
 
       <section>
         <h2>Missing arguments &amp; defaults</h2>
-        <pre><code>function greet(name) {
-  console.log("Hello " + name);
+        <pre><code>function greet(firstName) {
+  console.log("Hello, " + callName);
 }
 greet(); // Hello undefined 😬
 
-function greetNicely(name = "friend") {
-  console.log("Hello " + name);
+function greetNicely(callName = "friend") {
+  console.log("Hello, " + callName);
 }
-greetNicely();         // Hello friend
-greetNicely("Peter");  // Hello Peter</code></pre>
+greetNicely();         // Hello, friend
+greetNicely("Peter");  // Hello, Peter</code></pre>
         <p class="muted">
           A parameter you don't pass is <code>undefined</code> — unless you give
           it a default.
@@ -533,25 +533,27 @@ greetNicely("Peter");  // Hello Peter</code></pre>
         <h2>F1 — Your first functions</h2>
         <ol>
           <li>
-            <code>introduce(name, city)</code> → logs
-            <code>"Hi, I'm Mohammed from Aarhus"</code>. Call it 3 times with
+            <code>introduce(firstName, cityName)</code> → logs
+            <code>"Hi, I'm Mohamed from Aarhus"</code>. Call it 3 times with
             different people.
           </li>
           <li>
             <code>logSquare(number)</code> → logs
             <code>"5 squared is 25"</code>
           </li>
-          <li>Give <code>city</code> a default of <code>"Copenhagen"</code></li>
+          <li>
+            Give <code>cityName</code> a default of <code>"Copenhagen"</code>
+          </li>
         </ol>
         <p class="muted">
           What happens if you swap the arguments?
-          <code>introduce("Aarhus", "Mohammed")</code>
+          <code>introduce("Aarhus", "Mohamed")</code>
         </p>
       </section>
 
       <section class="title">
         <h1><code>return</code></h1>
-        <p>The most important slide today — slow down here</p>
+        <p>The most important slide today</p>
       </section>
 
       <section>
@@ -790,15 +792,15 @@ console.log(getBalanceMessage(99999));</code></pre>
 
       <section>
         <h2>Global vs. local (function) scope</h2>
-        <pre><code>const school = "HYF";        // global — visible everywhere
+        <pre><code>const bootcamp = "HYF";        // global — visible everywhere
 
 function welcome() {
   const message = "Welcome to"; // local — only inside welcome
-  console.log(message + " " + school); // ✅ both visible
+  console.log(message + " " + bootcamp); // ✅ both visible
 }
 
 welcome();
-console.log(school);   // ✅ "HYF"
+console.log(bootcamp);   // ✅ "HYF"
 console.log(message);  // ❌ ReferenceError: message is not defined</code></pre>
         <p class="muted">
           Variables declared inside a function live and die inside it.
@@ -1110,7 +1112,7 @@ for (let i = 0; i &lt; fruits.length; i++) {
       <section class="exercise" data-time="10 min">
         <h2>L4 — Send the emails 📧</h2>
         <p>Anna from HR sent us the recipients in a weird format:</p>
-        <pre><code>const recipients = "benjamin@gmail.com|peter@gmail.com|hans@gmail.com|ahmad@gmail.com|sana@gmail.com|virgeen@gmail.com|mohammed@gmail.com";
+        <pre><code>const recipients = "benjamin@gmail.com|peter@gmail.com|hans@gmail.com|ahmad@gmail.com|sana@gmail.com|virgeen@gmail.com|mohamed@gmail.com";
 
 // This function pretends to send an email
 function sendEmailTo(recipient) {
